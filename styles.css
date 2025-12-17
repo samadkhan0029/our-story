@@ -1,0 +1,674 @@
+:root {
+    --bg-color: #FFFBF5;
+    --card-bg: #F4F1EA;
+    --text-main: #2C2C2C;
+    --text-muted: #666666;
+    --text-light: #888888;
+    --accent-blue: #3B82F6;
+    --accent-blue-hover: #2563EB;
+    --accent-pink: #F472B6;
+    --border-color: #E5E5E5;
+    
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Lato', sans-serif;
+    
+    --spacing-sm: 1rem;
+    --spacing-md: 2rem;
+    --spacing-lg: 4rem;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    font-family: var(--font-body);
+    color: var(--text-main);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* --- ANIMATIONS --- */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+}
+
+.fade-in {
+    animation: fadeIn 0.8s ease-out forwards;
+}
+
+.shake {
+    animation: shake 0.3s ease-in-out;
+    border-color: #ef4444 !important;
+}
+
+/* --- TYPOGRAPHY --- */
+h1, h2, h3, h4 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+}
+
+.text-pink { color: var(--accent-pink); }
+.text-center { text-align: center; }
+.italic { font-style: italic; }
+
+/* --- NAVIGATION --- */
+.navbar {
+    position: sticky;
+    top: 0;
+    background: rgba(255, 251, 245, 0.95);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 3rem;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.nav-logo {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-main);
+    cursor: pointer; /* Makes logo look clickable */
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-links li {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: color 0.3s;
+    position: relative;
+}
+
+.nav-links li:hover, .nav-links li.active {
+    color: var(--accent-blue);
+}
+
+.nav-mobile-toggle {
+    display: none; /* Hidden by default on desktop */
+}
+
+/* --- LAYOUT --- */
+#app {
+    min-height: 100vh;
+    width: 100%;
+}
+
+/* Hero Section */
+.hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 6rem 1rem;
+    text-align: center;
+    background: radial-gradient(circle at 50% 50%, rgba(244,114,182,0.1) 0%, rgba(255,251,245,0) 70%);
+}
+
+.hero-date {
+    color: var(--accent-blue);
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.hero-title {
+    font-size: 5rem;
+    margin-bottom: 1rem;
+    line-height: 1.1;
+    color: var(--text-main);
+}
+
+.hero-subtitle {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: 1.5rem;
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+}
+
+.heart-icon {
+    font-size: 1.5rem;
+    color: var(--accent-pink);
+    margin: 2rem 0;
+    animation: pulse 2s infinite ease-in-out;
+}
+
+.hero-text {
+    max-width: 600px;
+    margin: 0 auto 3rem;
+    color: var(--text-muted);
+    font-size: 1rem;
+}
+
+.btn-primary {
+    background: var(--accent-blue);
+    color: white;
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: 50px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s;
+    font-family: var(--font-body);
+}
+
+.btn-primary:hover {
+    background: var(--accent-blue-hover);
+}
+
+/* Chapters Grid (Home) */
+.chapters-section {
+    padding: 4rem 10%;
+    background-color: white;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.section-header h2 {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+}
+
+.section-header p {
+    color: var(--text-muted);
+    font-family: var(--font-heading);
+    font-style: italic;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.chapter-card {
+    background: var(--bg-color);
+    padding: 2rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+    border: 1px solid transparent;
+}
+
+.chapter-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    border-color: rgba(0,0,0,0.05);
+}
+
+.chapter-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.chapter-card .date {
+    font-size: 0.8rem;
+    color: var(--text-light);
+    margin-bottom: 1rem;
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Chapter Detail View */
+.chapter-hero {
+    text-align: center;
+    padding: 6rem 1rem 3rem;
+    background: var(--bg-color);
+}
+
+.chapter-hero h1 {
+    font-size: 4rem;
+    margin-bottom: 0.5rem;
+}
+
+.chapter-hero h2 {
+    font-size: 1.5rem;
+    font-style: italic;
+    color: var(--text-muted);
+    font-weight: 400;
+}
+
+.chapter-memories {
+    padding: 2rem 10% 6rem;
+}
+
+.memory-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    margin-top: 2rem;
+}
+
+.memory-header h3 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+/* --- MEMORY CARD STYLES --- */
+.memory-card {
+    background: var(--card-bg);
+    border-radius: 8px;
+    overflow: hidden;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+    position: relative;
+    transition: all 0.3s;
+    cursor: pointer; /* Makes whole card clicky */
+}
+
+/* Allow text inside card to be ignored by clicks (so they pass to the container) */
+.memory-card h4, .memory-card p, .memory-date, .memory-icon {
+    pointer-events: none;
+}
+
+.memory-icon {
+    font-size: 2rem;
+    color: var(--text-light);
+    margin-bottom: 1rem;
+}
+
+.memory-card h4 {
+    margin-top: 1rem;
+    font-size: 1.2rem;
+}
+
+.memory-card p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+}
+
+.memory-date {
+    /* Removed default positioning logic as we aren't using date, 
+       but keeping basic styles just in case */
+    font-size: 0.75rem;
+    color: var(--text-light);
+    margin-bottom: 1rem;
+    width: 100%;
+}
+
+/* Media Preview (Scrollable Image Container) */
+.media-preview {
+    pointer-events: none; /* Let click pass to card */
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin-bottom: 1rem;
+    border-radius: 4px;
+    background: #f9f9f9;
+}
+
+/* Custom Scrollbar for image container */
+.media-preview::-webkit-scrollbar {
+    width: 4px;
+}
+.media-preview::-webkit-scrollbar-track {
+    background: transparent;
+}
+.media-preview::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 2px;
+}
+
+.media-preview img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Video inside card should capture clicks */
+.media-preview video {
+    pointer-events: auto; 
+}
+
+/* Remove Button */
+.btn-remove {
+    pointer-events: auto; /* Enable clicking */
+    background: transparent;
+    border: 1px solid #ef4444;
+    color: #ef4444;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 1.5rem;
+    font-size: 0.8rem;
+    font-family: var(--font-body);
+    transition: all 0.3s;
+    z-index: 2;
+}
+
+.btn-remove:hover {
+    background: #ef4444;
+    color: white;
+}
+
+/* Add Memory Button Area */
+.add-memory-container {
+    text-align: center;
+    margin: 4rem 0;
+}
+
+.btn-outline {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    padding: 1rem 3rem;
+    border-radius: 50px;
+    cursor: pointer;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    transition: all 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-outline:hover {
+    border-color: var(--text-main);
+    background: white;
+}
+
+/* Navigation Footer in Chapters */
+.chapter-nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem 10%;
+    border-top: 1px solid var(--border-color);
+    margin-top: 4rem;
+}
+
+.nav-item {
+    cursor: pointer;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.nav-item strong {
+    display: block;
+    color: var(--text-main);
+    font-size: 1.1rem;
+    font-family: var(--font-heading);
+}
+
+.nav-item:hover strong {
+    color: var(--accent-blue);
+}
+
+/* --- ADD MEMORY MODAL --- */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    align-items: center;
+    justify-content: center;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.close-modal {
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.input-group {
+    margin-bottom: 1rem;
+}
+
+.input-group label {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+}
+
+.input-group input, .input-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-family: var(--font-body);
+}
+
+.type-selector {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.type-btn {
+    flex: 1;
+    padding: 0.5rem;
+    background: transparent;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.type-btn.active {
+    background: var(--bg-color);
+    border-color: var(--text-main);
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.btn-secondary {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+}
+
+/* --- LOGIN SCREEN --- */
+#login-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-color);
+    z-index: 5000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.5s ease;
+}
+
+.login-card {
+    background: white;
+    padding: 3rem;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    width: 90%;
+    max-width: 400px;
+}
+
+.login-card h2 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-main);
+}
+
+.login-card p {
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+}
+
+.error-text {
+    color: #ef4444 !important;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0;
+    display: none;
+}
+
+/* --- IMAGE POP-UP (GLASSMORPHISM) --- */
+.image-popup {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Glass Effect */
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+    justify-content: center;
+    align-items: center;
+}
+
+.image-popup.active {
+    display: flex;
+}
+
+.image-popup img {
+    max-width: 85%;
+    max-height: 85vh;
+    border-radius: 12px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+    transform: scale(0.5);
+    opacity: 0;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s;
+}
+
+.image-popup.active img {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.close-popup-btn {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    background: white;
+    color: black;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+}
+
+.close-popup-btn:hover {
+    transform: scale(1.1);
+    color: var(--accent-pink);
+}
+
+
+/* --- RESPONSIVE / MOBILE MENU STYLES --- */
+@media (max-width: 768px) {
+    .hero-title { 
+        font-size: 3.5rem; 
+    }
+    
+    /* Initially hide links */
+    .nav-links { 
+        display: none; 
+        position: absolute;
+        top: 100%; /* Appears directly below the navbar */
+        left: 0;
+        width: 100%;
+        background-color: rgba(255, 251, 245, 0.98);
+        flex-direction: column;
+        align-items: center;
+        padding: 2rem 0;
+        box-shadow: 0 10px 15px rgba(0,0,0,0.05);
+        z-index: 999;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    /* Shown when toggle is clicked */
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links li {
+        margin: 1rem 0;
+        font-size: 1.2rem;
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav-mobile-toggle { 
+        display: block; 
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: var(--text-main);
+    }
+    
+    .grid { 
+        grid-template-columns: 1fr; 
+    }
+    
+    .chapter-hero h1 { 
+        font-size: 2.5rem; 
+    }
+}

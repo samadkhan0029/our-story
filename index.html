@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Story - A Journey of Love</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div id="login-overlay">
+        <div class="login-card">
+            <i class="fa-solid fa-lock text-pink" style="font-size: 2rem; margin-bottom: 1rem;"></i>
+            <h2>Our Story</h2>
+            <p>Please enter the passcode to view.</p>
+            <div class="input-group">
+                <input type="password" id="password-input" placeholder="Passcode" maxlength="4">
+            </div>
+            <p id="error-message" class="error-text">Incorrect passcode</p>
+            <button id="login-btn" class="btn-primary">Enter</button>
+        </div>
+    </div>
+
+    <div id="main-interface" style="display: none;">
+        <nav class="navbar">
+            <div class="nav-logo">
+                <i class="fa-solid fa-heart text-pink"></i> Our Story
+            </div>
+            <ul class="nav-links">
+                <li class="active" data-target="home">Home</li>
+                <li data-target="beginning">The Beginning</li>
+                <li data-target="friendship">Friendship</li>
+                <li data-target="love">Love</li>
+                <li data-target="storms">Storms & Peace</li>
+                <li data-target="special">Special Moments</li>
+            </ul>
+            <div class="nav-mobile-toggle">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+        </nav>
+
+        <main id="app">
+        </main>
+    </div>
+
+    <div id="memory-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add New Memory</h3>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="input-group">
+                    <label>Memory Type</label>
+                    <div class="type-selector">
+                        <button class="type-btn active" onclick="selectType('photo')"><i class="fa-regular fa-image"></i> Photos</button>
+                        <button class="type-btn" onclick="selectType('video')"><i class="fa-solid fa-video"></i> Video</button>
+                        <button class="type-btn" onclick="selectType('note')"><i class="fa-regular fa-note-sticky"></i> Note</button>
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <label>Title</label>
+                    <input type="text" id="mem-title" placeholder="A special moment...">
+                </div>
+                
+                <div class="input-group">
+                    <label>Date</label>
+                    <input type="date" id="mem-date">
+                </div>
+                
+                <div class="input-group">
+                    <label>Description</label>
+                    <textarea id="mem-desc" placeholder="Tell the story behind this memory..."></textarea>
+                </div>
+                
+                <div class="input-group" id="media-input-group">
+                    <label>Upload Media (Photo/Video)</label>
+                    <input type="file" id="mem-file" accept="image/*,video/*">
+                </div>
+            </div>
+            
+            <div class="modal-footer">
+                <button class="btn-secondary close-modal-btn">Cancel</button>
+                <button class="btn-primary" id="save-memory-btn">Add Memory</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="image-popup" class="image-popup" onclick="closePopup()">
+        <div class="close-popup-btn">&times;</div>
+        <img id="popup-img" src="" alt="Memory">
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
